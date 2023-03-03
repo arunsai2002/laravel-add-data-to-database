@@ -6,13 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\member;
 
-class mycontroller extends Controller
+
+class StudentController extends Controller
 {
     //
-    function index(Request $req){
-       $member = new member;
-       $member->email = $req->email;
-       $member->password = $req->password;
+    
+
+    public function index(){
+        return view('index');
+    }
+    public function store(Request $request){
+       $this->validate($request,[
+        'email'=>'required',
+        'password'=>'required'
+       ]);
+       $member = new member([
+        'email'=>$request->get('email'),
+        'password'=>$request->get('password')
+       ]);
        $member->save();
+        
     }
 }
