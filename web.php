@@ -1,18 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\mycontroller;
+use App\Http\Controllers\StudentController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('users', function () {
-    return view('users');
+Route::get('index', function () {
+    return view('index');
 });
 
 
 
 
-Route::post('controller',[mycontroller::class,'index']);
+Route::get('login',[StudentController::class,'index']);
+Route::post('login',[StudentController::class,'store']);
