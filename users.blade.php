@@ -11,15 +11,20 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <form action="" method="post">
+   
+
+    <form action="login" method="post">
+        @csrf
         <div class="form-group">
           email:
           <input type="email" name="email">
+          <span>@error ('email') {{$message}} @enderror</span>
           
         </div>
         <div class="form-group">
           password:
           <input type="password" name="password">
+         <span> @error ('password') {{$message}} @enderror</span>
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
