@@ -16,15 +16,25 @@ class StudentController extends Controller
         return view('index');
     }
     public function store(Request $request){
-       $this->validate($request,[
+   
+
+    // return $request->input();
+    $request->validate([
         'email'=>'required',
-        'password'=>'required'
-       ]);
-       $member = new member([
-        'email'=>$request->get('email'),
-        'password'=>$request->get('password')
-       ]);
-       $member->save();
+        'password'=>'required',
+    ]);
+
+    $query = DB::table('crudtable')->insert([
+        'email'=>$request->input('email'),
+        'password'=>$request->input('password'),
+    ]);
+
+    if($query){
+        echo 'data inserted successfully';
+    }
+    else{
+        echo "failed to insert";
+    }
         
     }
 }
